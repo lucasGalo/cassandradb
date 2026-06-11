@@ -48,3 +48,26 @@ spec:
   ports:
   - port: 9042
     name: cql
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: cassandra-init
+spec:
+  template:
+    spec:
+      restartPolicy: OnFailure
+      containers:
+      - name: cassandra-init
+        image: cassandra:4.1
+        command:
+        - sh
+        - -c
+        - |
+          echo "🔹 Criando keyspace e usuário..."
+          cqlsh cassandra -e "
+            CREATE KEYSPACE IF NOT EXISTS mykeyspace
+            WITH replication = {'class':'SimpleStrategy','replication_factor':1};
+            CREATE USER IF NOT EXISTS cassandra WITH PASSWORD 'cassandra' SUPERUSER;
+          "
+          echo "✅ Keyspace e usuário criados!"
