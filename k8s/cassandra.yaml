@@ -22,7 +22,7 @@ spec:
         - name: CASSANDRA_CLUSTER_NAME
           value: "MyCluster"
         - name: CASSANDRA_SEEDS
-          value: "cassandra-0.cassandra.default.svc.cluster.local,cassandra-1.cassandra.default.svc.cluster.local"
+          value: "cassandra-0.cassandra.default.svc.cluster.local"
         - name: CASSANDRA_START_RPC
           value: "true"
         volumeMounts:
