@@ -42,15 +42,12 @@ kind: Service
 metadata:
   name: cassandra
 spec:
-  type: NodePort
+  clusterIP: None
   selector:
     app: cassandra
   ports:
-    - port: 9042
-      targetPort: 9042
-      nodePort: 30042
-      name: cql
-
+  - port: 9042
+    name: cql
 ---
 apiVersion: batch/v1
 kind: Job
